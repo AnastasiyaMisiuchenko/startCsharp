@@ -1,32 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace startCsharp
 {
     /* 
-    Задание 13: Поиск максимального элемента в каждой строке
-    Напишите программу, которая создает двумерный массив 3x3 и выводит максимальный элемент в каждой строке.
-    Задание 14: Транспонирование матрицы
-    Напишите программу, которая создает двумерный массив 4x4 и транспонирует его.
-    Задание 15: Умножение матриц
-    Напишите программу, которая умножает две двумерные матрицы размером 2x2.
-    Задание 16: Обратная матрица
-    Напишите программу, которая находит обратную матрицу для матрицы 2x2. Если обратная матрица не существует, программа должна вывести соответствующее сообщение.
-    Задание 17: Поворот матрицы на 90 градусов
-    Напишите программу, которая поворачивает двумерный массив 3x3 на 90 градусов по часовой стрелке.
-    Задание 18: Среднее арифметическое столбцов
-    Напишите программу, которая вычисляет среднее арифметическое элементов в каждом столбце двумерного массива 3x3.
-    Задание 19: Умножение матрицы на число
-    Напишите программу, которая умножает каждый элемент двумерного массива 3x3 на заданное число.
-    Задание 20: Нахождение минимального элемента в каждой строке
-    Напишите программу, которая находит минимальный элемент в каждой строке двумерного массива 3x3.
-
-
-    Задание 21: Класс для представления человека
-    Создайте класс Person, который будет содержать следующие поля: имя, возраст, пол. Добавьте методы для вывода информации о человеке и увеличения возраста.
+    
 
     Задание 22: Класс для представления автомобиля
     Создайте класс Car, который будет содержать поля: марка, модель, год выпуска и пробег. Добавьте методы для вывода информации об автомобиле и увеличения пробега.
@@ -41,11 +19,20 @@ namespace startCsharp
     Создайте класс Rectangle, который будет содержать поля: длина и ширина. Добавьте методы для вычисления площади и периметра прямоугольника.*/
     internal class Program
     {
+
+    
         static void Main(string[] args)
         {
-            setarr();
+            person();
 
             Console.ReadKey();
+        }
+
+        static void person()
+        {
+            Person Nastya = new Person("Настя", 23, "Женский");
+            Nastya.printinfo();
+            Nastya.uage();
         }
 
         static void sum()
@@ -126,7 +113,7 @@ namespace startCsharp
         {/* Задание 2: Напишите программу, которая запрашивает у пользователя температуру и выводит 
           сообщение о том, жарко, холодно или нормально.*/
             Console.WriteLine("Какая сейчас температура?");
-            int t = int.Parse(Console.ReadLine());  
+            int t = int.Parse(Console.ReadLine());
             if (t < 5)
             {
                 Console.WriteLine("Cейчас холодно.");
@@ -256,7 +243,7 @@ namespace startCsharp
             int sum = 0;
             for (int i = 0; i < 10; i++)
             {
-                arr[i] = rand.Next(0,100);
+                arr[i] = rand.Next(0, 100);
                 Console.WriteLine(arr[i]);
             }
             for (int i = 0; i < 10; i++)
@@ -284,10 +271,10 @@ namespace startCsharp
         {/*Задание 7: Напишите программу, которая создает двумерный массив 3x3 из случайных чисел и вычисляет сумму его элементов.*/
             Random random = new Random();
             int[,] arr = new int[3, 3];
-            int sum = 0;    
+            int sum = 0;
             for (int i = 0; i < 3; i++)
             {
-                for( int j = 0; j < 3; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     arr[i, j] = random.Next(0, 50);
                     Console.Write(arr[i, j]);
@@ -306,7 +293,7 @@ namespace startCsharp
             Console.WriteLine(sum);
         }
 
-        static void trarr() // ДОДЕЛАТЬ
+        static void trarr()
         {/*Задание 8: Напишите программу, которая создает двумерный массив 3x3 из случайных чисел и транспонирует его.*/
             Random rand = new Random();
             int[,] arr = new int[3, 3];
@@ -315,20 +302,27 @@ namespace startCsharp
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    arr[i,j] = rand.Next(0, 50);
+                    arr[i, j] = rand.Next(0, 50);
                     Console.Write(arr[i, j]);
                     Console.Write(" ");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
+            {
+                for (int i = 0; i < 3; i++)
+                    for (int j = i + 1; j < 3; j++)
+                    {
+                        a = arr[i, j];
+                        arr[i, j] = arr[j, i];
+                        arr[j, i] = a;
+                    }
+            }
+            Console.WriteLine();
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    a = arr[i, j];
-                    arr[i, j] = arr[j, i];
-                    arr[j, i] = a;
                     Console.Write(arr[i, j]);
                     Console.Write(" ");
                 }
@@ -361,9 +355,9 @@ namespace startCsharp
         {/*Задание 10: Напишите функцию, которая принимает массив чисел и возвращает максимальный элемент.*/
             Random rand = new Random();
             int[] arr = new int[10];
-            for (int i =0; i<10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                arr[i] = rand.Next(0,25);
+                arr[i] = rand.Next(0, 25);
                 Console.WriteLine(arr[i]);
             }
             Console.Write("Наибольшее значение в массиве равно: ");
@@ -373,12 +367,12 @@ namespace startCsharp
         static void setarr()
         {/*Задание 11: Напишите программу, которая заполняет двумерный массив размером 4x4 случайными числами и выводит его на экран.*/
             int[,] arr = new int[4, 4];
-            Random rand = new Random(); 
-            for (int i =0; i<4; i++)
+            Random rand = new Random();
+            for (int i = 0; i < 4; i++)
             {
-                for (int j =0; j<4; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    arr[i,j] = rand.Next(0,25);
+                    arr[i, j] = rand.Next(0, 25);
                     Console.Write(arr[i, j]);
                     Console.Write(" ");
                 }
@@ -388,9 +382,365 @@ namespace startCsharp
 
         static void darr()
         {/*Задание 12: Напишите программу, которая создает двумерный массив 5x5 и вычисляет сумму элементов на главной диагонали.*/
-        
+            Random rand = new Random();
+            int[,] arr = new int[5, 5];
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    arr[i, j] = rand.Next(0, 5);
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            int sum = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (j == i)
+                    {
+                        sum += arr[i, j];
+                    }
+                }
+            }
+            Console.Write("Сумма элементов по диагонали равна: ");
+            Console.WriteLine(sum);
+        }
+
+        static void maxinline()
+        {/*Задание 13: Напишите программу, которая создает двумерный массив 3x3 и выводит максимальный элемент в каждой строке.*/
+            Random rand = new Random();
+            int[,] arr = new int[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    arr[i, j] = rand.Next(0, 5);
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            int[] arr1 = new int[3];
+            for (int j = 0; j < 3; j++)
+            {
+                arr1[j] = arr[0, j];
+            }
+            Console.Write("Наибольшее значение в первой строке массива равно: ");
+            Console.WriteLine(arr1.Max());
+            int[] arr2 = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                arr2[i] = arr[1, i];
+            }
+            Console.Write("Наибольшее значение во второй строке массива равно: ");
+            Console.WriteLine(arr2.Max());
+            int[] arr3 = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                arr3[i] = arr[2, i];
+            }
+            Console.Write("Наибольшее значение в третьей строке массива равно: ");
+            Console.WriteLine(arr3.Max());
+        }
+
+        static void trarr2()
+        {/*Задание 14: Напишите программу, которая создает двумерный массив 4x4 и транспонирует его.*/
+            Random rand = new Random();
+            int[,] arr = new int[4, 4];
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    arr[i, j] = rand.Next(0, 10);
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = i + 1; j < 4; j++)
+                {
+                    int a = arr[i, j];
+                    arr[i, j] = arr[j, i];
+                    arr[j, i] = a;
+                }
+            }
+            Console.WriteLine();
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        static void prarr()
+        {/*Задание 15: Напишите программу, которая умножает две двумерные матрицы размером 2x2.*/
+            Random rand = new Random();
+            int[,] arr1 = new int[2, 2];
+            int[,] arr2 = new int[2, 2];
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    arr1[i, j] = rand.Next(0, 10);
+                    Console.Write(arr1[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    arr2[i, j] = rand.Next(0, 10);
+                    Console.Write(arr2[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            int[,] arr = new int[2, 2];
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    arr[i, j] = arr1[i, j] * arr2[i, j];
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        static void obarr() // ДОДЕЛАТЬ 
+        {/*Задание 16: Напишите программу, которая находит обратную матрицу для матрицы 2x2. 
+         Если обратная матрица не существует, программа должна вывести соответствующее сообщение.*/
+            Random rand = new Random();
+            int[,] arr = new int[2, 2];
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    arr[i, j] = rand.Next(0, 10);
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            int[,] arr1 = new int[2, 2];
+            int det = arr[0, 0] * arr[1, 1] - arr[0, 1] * arr[1, 0];
+            if (det == 0)
+            {
+                Console.WriteLine("Обратной матрицы не существует");
+            }
+            if (det != 0)
+            {
+
+            }
+        }
+
+        static void parr()
+        {/*Задание 17: Напишите программу, которая поворачивает двумерный массив 3x3 на 90 градусов по часовой стрелке.*/
+            Random rand = new Random();
+            int[,] arr = new int[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    arr[i, j] = rand.Next(0, 5);
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            int[,] arr1 = new int[3, 3];
+            arr1[0, 0] = arr[2, 0];
+            arr1[0, 1] = arr[1, 0];
+            arr1[0, 2] = arr[0, 0];
+            arr1[1, 0] = arr[2, 1];
+            arr1[1, 1] = arr[1, 1];
+            arr1[1, 2] = arr[0, 1];
+            arr1[2, 0] = arr[2, 2];
+            arr1[2, 1] = arr[1, 2];
+            arr1[2, 2] = arr[0, 2];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write(arr1[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        static void srсols()
+        {/* Задание 18: Напишите программу, которая вычисляет среднее арифметическое элементов в каждом столбце двумерного массива 3x3.*/
+            Random rand = new Random();
+            int[,] arr = new int[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    arr[i, j] = rand.Next(0, 10);
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            int[] arr1 = new int[3];
+            double a = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                arr1[i] = arr[i, 0];
+                a += arr1[i];
+            }
+            Console.Write("Среднее арифметрическое первого столбца равно: ");
+            Console.WriteLine(a / 3);
+            int[] arr2 = new int[3];
+            double b = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                arr2[i] = arr[i, 1];
+                b += arr2[i];
+            }
+            Console.Write("Среднее арифметическое второго столбца равно: ");
+            Console.WriteLine(b / 3);
+            int[] arr3 = new int[3];
+            double c = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                arr3[i] = arr[i, 2];
+                c += arr3[i];
+            }
+            Console.Write("Среднее арифметическое третьего столбца равно: ");
+            Console.WriteLine(c / 3);
+        }
+
+        static void umarr()
+        {/*Задание 19: Напишите программу, которая умножает каждый элемент двумерного массива 3x3 на заданное число.*/
+            Random rand = new Random();
+            int[,] arr = new int[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    arr[i, j] = rand.Next(1, 15);
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            int x;
+            do
+            {
+                Console.WriteLine("На какое число хотетите умножить массив?");
+                x = int.Parse(Console.ReadLine());
+                if (x == 0)
+                {
+                    Console.WriteLine("На 0 умножать нельзя!");
+                }
+            } while (x == 0);
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    arr[i, j] = arr[i, j] * x;
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+
+        }
+
+        static void mininarr()
+        {/*Задание 20: Напишите программу, которая находит минимальный элемент в каждой строке двумерного массива 3x3.*/
+            Random rand = new Random();
+            int[,] arr = new int[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    arr[i, j] = rand.Next(0, 50);
+                    Console.Write(arr[i, j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            int[] arr1 = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                arr1[i] = arr[0, i];
+            }
+            Console.Write("Наименьшее значение в первой строке массива равно: ");
+            Console.WriteLine(arr1.Min());
+            int[] arr2 = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                arr2[i] = arr[1, i];
+            }
+            Console.Write("Наименьшее значение во второй строке массива равно: ");
+            Console.WriteLine(arr2.Min());
+            int[] arr3 = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                arr3[i] = arr[2, i];
+            }
+            Console.Write("Наименьшее значение в третьей строке массива равно: ");
+            Console.WriteLine(arr3.Min());
         }
 
     }
-}
+    /*Задание 21: Класс для представления человека
+    Создайте класс Person, который будет содержать следующие поля: имя, возраст, пол.Добавьте методы для вывода информации
+    о человеке и увеличения возраста.*/
 
+    class Person
+    {
+        public string name;
+        public int age;
+        public string sex;
+
+        public Person(string name, int age, string sex)
+        {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+
+        public void set(string name, int age, string sex)
+        {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        public void printinfo()
+        {
+            Console.WriteLine($"Имя:{name}\nВозраст:{age}\nПол:{sex}\n");
+        }
+
+        public void uage()
+        {
+            Console.WriteLine("Какой сейчас год?");
+            int a = int.Parse(Console.ReadLine());
+            int x = a - 2024;
+            Console.Write("Насте сейчас ");
+            Console.WriteLine(age + x);
+        }
+    }
+
+}
