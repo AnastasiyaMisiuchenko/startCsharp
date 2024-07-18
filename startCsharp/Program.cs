@@ -3,31 +3,18 @@ using System.Linq;
 
 namespace startCsharp
 {
-    /* 
-    
-
-    Задание 22: Класс для представления автомобиля
-    Создайте класс Car, который будет содержать поля: марка, модель, год выпуска и пробег. Добавьте методы для вывода информации об автомобиле и увеличения пробега.
-
-    Задание 23: Класс для представления банковского счета
-    Создайте класс BankAccount, который будет содержать поля: номер счета, владелец счета, баланс. Добавьте методы для вывода информации о счете, внесения и снятия денег.
-
-    Задание 24: Класс для представления студента
-    Создайте класс Student, который будет содержать поля: имя, возраст, список оценок. Добавьте методы для вывода информации о студенте, добавления новой оценки и вычисления среднего балла.
-
-    Задание 25: Класс для представления прямоугольника
-    Создайте класс Rectangle, который будет содержать поля: длина и ширина. Добавьте методы для вычисления площади и периметра прямоугольника.*/
     internal class Program
     {
 
-    
+
         static void Main(string[] args)
         {
-            person();
+            srсols();
 
             Console.ReadKey();
         }
 
+        #region CSHARP LEARNING
         static void person()
         {
             Person Nastya = new Person("Настя", 23, "Женский");
@@ -35,6 +22,34 @@ namespace startCsharp
             Nastya.uage();
         }
 
+        static void car()
+        {
+            Car bmw = new Car("BMW", "X5", 2017, 0);
+            bmw.printinfo();
+            bmw.umile();
+        }
+
+        static void bankac()
+        {
+            BankAccount one = new BankAccount(452, "Анастасия", 1000);
+            one.pritinfo();
+            one.redbalance();
+        }
+
+        static void students()
+        {
+            Student obj = new Student("Aнастасия", 23);
+            int x = obj.srating();
+            obj.printinfo();
+            // obj.gpa(x);
+        }
+
+        static void pryamougolnik()
+        {
+            Rectangle one = new Rectangle(12, 5);
+            one.perimetr();
+            one.ploshad();
+        }
         static void sum()
         {
             Console.WriteLine("Введите первое число: ");
@@ -93,6 +108,7 @@ namespace startCsharp
 
             } while (select != 2);
         }
+        #endregion
 
         static void num()
         {/* Задание 1: Напишите программу, которая запрашивает у пользователя число и выводит сообщение, 
@@ -100,7 +116,7 @@ namespace startCsharp
             Console.Write("Введите число: ");
             int x = int.Parse(Console.ReadLine());
             if (x % 2 == 0)
-            {
+            { 
                 Console.WriteLine("Число четное");
             }
             else
@@ -118,11 +134,11 @@ namespace startCsharp
             {
                 Console.WriteLine("Cейчас холодно.");
             }
-            if (t > 5 && t < 22)
+            if (t >= 5 && t < 22)
             {
                 Console.WriteLine("Сейчас нормальная температура.");
             }
-            if (t > 22)
+            if (t >= 22)
             {
                 Console.WriteLine("Сейчас жарко.");
             }
@@ -136,8 +152,8 @@ namespace startCsharp
             int fakt = 1;
             while (f > 1)
             {
-                f = f - 1;
                 fakt *= f;
+                f = f - 1;
             }
             Console.WriteLine(fakt);
         }
@@ -289,8 +305,7 @@ namespace startCsharp
                     sum += arr[i, j];
                 }
             }
-            Console.Write("Cумма всех элементов массива равна: ");
-            Console.WriteLine(sum);
+            Console.Write("Cумма всех элементов массива равна: " + sum);
         }
 
         static void trarr()
@@ -424,27 +439,19 @@ namespace startCsharp
                 Console.WriteLine();
             }
             Console.WriteLine();
-            int[] arr1 = new int[3];
-            for (int j = 0; j < 3; j++)
+
+            int n = 3;
+            int[] arr1 = new int[n];
+            for (int i = 0; i < n; i++)
             {
-                arr1[j] = arr[0, j];
+                for (int j = 0; j < n; j++)
+                {
+                    arr1[j] = arr[i, j];
+                }
+                Console.Write("Наибольшее значение в строке номер " + i + " равна: ");
+                Console.WriteLine(arr1.Max());
             }
-            Console.Write("Наибольшее значение в первой строке массива равно: ");
-            Console.WriteLine(arr1.Max());
-            int[] arr2 = new int[3];
-            for (int i = 0; i < 3; i++)
-            {
-                arr2[i] = arr[1, i];
-            }
-            Console.Write("Наибольшее значение во второй строке массива равно: ");
-            Console.WriteLine(arr2.Max());
-            int[] arr3 = new int[3];
-            for (int i = 0; i < 3; i++)
-            {
-                arr3[i] = arr[2, i];
-            }
-            Console.Write("Наибольшее значение в третьей строке массива равно: ");
-            Console.WriteLine(arr3.Max());
+          
         }
 
         static void trarr2()
@@ -540,23 +547,47 @@ namespace startCsharp
             Console.WriteLine();
             int[,] arr1 = new int[2, 2];
             int det = arr[0, 0] * arr[1, 1] - arr[0, 1] * arr[1, 0];
+
             if (det == 0)
             {
                 Console.WriteLine("Обратной матрицы не существует");
             }
-            if (det != 0)
+            else
             {
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        arr1[j, i] = arr[i, j];
+                    }
+                }
 
+
+                for (int i = 0, n = 2; i < n; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        arr[i, j] = Convert.ToInt32(Math.Pow(-1, i + j)) * arr1[n - 1 - i, n - 1 - j];
+                        arr[i, j] *= 1/det;
+                        Console.Write(arr[i, j] + " ");
+                    }
+                    Console.WriteLine();
+                }
+                    
+                        
+               
+                
             }
         }
 
         static void parr()
         {/*Задание 17: Напишите программу, которая поворачивает двумерный массив 3x3 на 90 градусов по часовой стрелке.*/
             Random rand = new Random();
-            int[,] arr = new int[3, 3];
-            for (int i = 0; i < 3; i++)
+            int n = 3;
+            int[,] arr = new int[n, n];
+            for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < n; j++)
                 {
                     arr[i, j] = rand.Next(0, 5);
                     Console.Write(arr[i, j]);
@@ -566,18 +597,16 @@ namespace startCsharp
             }
             Console.WriteLine();
             int[,] arr1 = new int[3, 3];
-            arr1[0, 0] = arr[2, 0];
-            arr1[0, 1] = arr[1, 0];
-            arr1[0, 2] = arr[0, 0];
-            arr1[1, 0] = arr[2, 1];
-            arr1[1, 1] = arr[1, 1];
-            arr1[1, 2] = arr[0, 1];
-            arr1[2, 0] = arr[2, 2];
-            arr1[2, 1] = arr[1, 2];
-            arr1[2, 2] = arr[0, 2];
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < n; j++)
+                {   
+                    arr1[i, j] = arr[n - j - 1, i];
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
                 {
                     Console.Write(arr1[i, j]);
                     Console.Write(" ");
@@ -600,33 +629,20 @@ namespace startCsharp
                 }
                 Console.WriteLine();
             }
-            int[] arr1 = new int[3];
+            int n = 3;
+            int[] arr1 = new int[n];
             double a = 0;
-            for (int i = 0; i < 3; i++)
+      
+            for (int i = 0; i < n; i++)
             {
-                arr1[i] = arr[i, 0];
-                a += arr1[i];
+                for (int j = 0; j < n; j++)
+                {
+                    arr1[j] = arr[j, i];
+                }
+                Console.Write("Наибольшее значение в столбце номер " + i + " равна: ");
+                Console.WriteLine(arr1.Average());
             }
-            Console.Write("Среднее арифметрическое первого столбца равно: ");
-            Console.WriteLine(a / 3);
-            int[] arr2 = new int[3];
-            double b = 0;
-            for (int i = 0; i < 3; i++)
-            {
-                arr2[i] = arr[i, 1];
-                b += arr2[i];
-            }
-            Console.Write("Среднее арифметическое второго столбца равно: ");
-            Console.WriteLine(b / 3);
-            int[] arr3 = new int[3];
-            double c = 0;
-            for (int i = 0; i < 3; i++)
-            {
-                arr3[i] = arr[i, 2];
-                c += arr3[i];
-            }
-            Console.Write("Среднее арифметическое третьего столбца равно: ");
-            Console.WriteLine(c / 3);
+
         }
 
         static void umarr()
@@ -654,6 +670,7 @@ namespace startCsharp
                     Console.WriteLine("На 0 умножать нельзя!");
                 }
             } while (x == 0);
+
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -681,34 +698,24 @@ namespace startCsharp
                 }
                 Console.WriteLine();
             }
-            int[] arr1 = new int[3];
-            for (int i = 0; i < 3; i++)
+  
+            int n = 3;
+            int[] arr1 = new int[n];
+            for (int i = 0; i < n; i++)
             {
-                arr1[i] = arr[0, i];
+                for (int j = 0; j < n; j++)
+                {
+                    arr1[j] = arr[i, j];
+                }
+                Console.Write("Наибольшее значение в строке номер " + i + " равна: ");
+                Console.WriteLine(arr1.Min());
             }
-            Console.Write("Наименьшее значение в первой строке массива равно: ");
-            Console.WriteLine(arr1.Min());
-            int[] arr2 = new int[3];
-            for (int i = 0; i < 3; i++)
-            {
-                arr2[i] = arr[1, i];
-            }
-            Console.Write("Наименьшее значение во второй строке массива равно: ");
-            Console.WriteLine(arr2.Min());
-            int[] arr3 = new int[3];
-            for (int i = 0; i < 3; i++)
-            {
-                arr3[i] = arr[2, i];
-            }
-            Console.Write("Наименьшее значение в третьей строке массива равно: ");
-            Console.WriteLine(arr3.Min());
         }
 
     }
     /*Задание 21: Класс для представления человека
     Создайте класс Person, который будет содержать следующие поля: имя, возраст, пол.Добавьте методы для вывода информации
     о человеке и увеличения возраста.*/
-
     class Person
     {
         public string name;
@@ -732,15 +739,186 @@ namespace startCsharp
         {
             Console.WriteLine($"Имя:{name}\nВозраст:{age}\nПол:{sex}\n");
         }
-
         public void uage()
         {
-            Console.WriteLine("Какой сейчас год?");
-            int a = int.Parse(Console.ReadLine());
-            int x = a - 2024;
-            Console.Write("Насте сейчас ");
-            Console.WriteLine(age + x);
+            age += 1;
+        }
+    }
+    /* Задание 22: Класс для представления автомобиля
+    Создайте класс Car, который будет содержать поля: марка, модель, год выпуска и пробег. 
+    Добавьте методы для вывода информации об автомобиле и увеличения пробега.*/
+    class Car
+    {
+        public string brand;
+        public string model;
+        public int year;
+        public int mile;
+
+        public Car(string brand, string model, int year, int mile)
+        {
+            this.brand = brand;
+            this.model = model;
+            this.year = year;
+            this.mile = mile;
+        }
+
+        public void printinfo()
+        {
+            Console.WriteLine($"Бренд:{brand}\nМодель:{model}\nГод выпуска:{year}\nПробег:{mile}");
+        }
+
+        public void umile()
+        {
+            mile += 1;
+        }
+
+    }
+    /*Задание 23: Класс для представления банковского счета
+    Создайте класс BankAccount, который будет содержать поля: номер счета, владелец счета, баланс.
+    Добавьте методы для вывода информации о счете, внесения и снятия денег.*/
+    class BankAccount
+    {
+        public int acnum;
+        public string owner;
+        public int balance;
+
+        public BankAccount(int acnum, string owner, int balance)
+        {
+            this.acnum = acnum;
+            this.owner = owner;
+            this.balance = balance;
+        }
+
+        public void pritinfo()
+        {
+            Console.WriteLine($"Номер счета:{acnum}\nВладелец:{owner}\nБаланс:{balance}");
+        }
+
+        public void deposit(int dep)
+        {
+            balance += dep;
+        }
+        public void cashout(int amount)
+        {
+            if(balance > amount)
+            {
+                balance -= amount;
+                Console.WriteLine("Успешное снятие наличных");
+            }
+            else
+            {
+                Console.WriteLine("На балансе недостаточно средств для снятия. Остаток:" + balance);
+            }
+        }
+    /*    public void redbalance()
+        {
+            int x;
+            do
+            {
+                Console.WriteLine("Вы хотите снять(1) или внести(2) деньги?");
+                x = int.Parse(Console.ReadLine());
+            } while (x != 1 && x != 2);
+            if (x == 1)
+            {
+                Console.Write("Введите сумму: ");
+                int y = int.Parse(Console.ReadLine());
+                Console.Write("Текущий баланс: ");
+                Console.WriteLine(balance - y);
+                balance -= y;
+            }
+            if (x == 2)
+            {
+                Console.WriteLine("Какую сумму хотели бы внести?");
+                int y = int.Parse(Console.ReadLine());
+                Console.Write("Текущий баланс: ");
+                Console.WriteLine(balance + y);
+                balance += y;
+            }
+        }*/
+    }
+}
+/*Задание 24: Класс для представления студента
+Создайте класс Student, который будет содержать поля: имя, возраст, список оценок.
+Добавьте методы для вывода информации о студенте, добавления новой оценки и вычисления среднего балла.*/
+class Student
+{
+    public string name;
+    public int age;
+    public int[] rating;
+
+    public Student(string name, int age, int[] rating)
+    {
+        this.name = name;
+        this.age = age;
+        this.rating = rating;
+    }
+
+    public Student(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+
+    public int srating()
+    {
+        Console.WriteLine("Введите оценки: ");
+        rating = new int[10];
+        int sum = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            rating[i] = int.Parse(Console.ReadLine());
+            sum += rating[i];
+        }
+        return sum;
+    }
+
+    public void printinfo()
+    {
+        Console.WriteLine($"Имя студента:{name}\nВозраст:{age}\nОценки:\n");
+
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine(rating[i]);
         }
     }
 
+
+    public void gpa(int sum)
+    {
+        double gpa = sum / rating.Length;
+        Console.Write("Средний балл равен: ");
+        Console.WriteLine(gpa);
+    }
+
 }
+/*Задание 25: Класс для представления прямоугольника
+Создайте класс Rectangle, который будет содержать поля: длина и ширина.Добавьте методы для вычисления 
+площади и периметра прямоугольника.*/
+class Rectangle
+{
+    public int dlina; // как в с№ cделать unsigned 
+    public int shirina;
+
+    public Rectangle(int dlina, int shirina)
+    {
+        this.dlina = dlina;
+        this.shirina = shirina;
+    }
+
+    public void ploshad()
+    {
+        Console.Write("Площадь прямоугольника равна: ");
+        Console.WriteLine(dlina * shirina);
+    }
+
+    public void perimetr()
+    {
+        Console.Write("Периметр прямоугольника равен: ");
+        Console.WriteLine(2 * (dlina + shirina));
+    }
+
+}
+
+
+
+
